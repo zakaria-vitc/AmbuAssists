@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard - EmergencyTrack</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #e74c3c;
+        }
+        .patient-list {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        .patient-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital Dashboard - EmergencyTrack</h1>
+    </header>
+    <main>
+        <h2>Patient List</h2>
+        <div class="patient-list" id="patient-list">
+            <!-- Patient list will be displayed here -->
+        </div>
+    </main>
+
+    <script>
+        // Initialize patient list
+        const patientList = document.getElementById('patient-list');
+
+        // Function to update patient list
+        function updatePatientList(patients) {
+            patientList.innerHTML = '';
+            patients.forEach(patient => {
+                const patientItem = document.createElement('div');
+                patientItem.classList.add('patient-item');
+                patientItem.innerHTML = `
+                    <h3>Patient ${patient.id}</h3>
+                    <p>Name: ${patient.name}</p>
+                    <p>Condition: ${patient.condition}</p>
+                    <p>Ambulance ETA: ${patient.eta}</p>
+                `;
+                patientList.appendChild(patientItem);
+            });
+        }
+
+        // Simulate patient data
+        const patients = [
+            { id: 1, name: 'John Doe', condition: 'Critical', eta: '10 minutes' },
+            { id: 2, name: 'Jane Doe', condition: 'Stable', eta: '20 minutes' },
+            { id: 3, name: 'Bob Smith', condition: 'Critical', eta: '30 minutes' },
+        ];
+
+        updatePatientList(patients);
+    </script>
+</body>
+</html>
